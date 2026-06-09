@@ -147,11 +147,19 @@ export function getPlayerEmissions() {
     });
   });
 
-  return players.map((player) => ({
-    ...player,
-    ...emissions[player.id],
-    tripCount: travelData.filter((t) => t.participants.includes(player.id)).length,
-  }));
+  return players.map((player) => {
+    const playerTrips = travelData.filter((t) => t.participants.includes(player.id));
+    const lastUpdated = playerTrips.reduce(
+      (latest, t) => (t.date > latest ? t.date : latest),
+      "",
+    );
+    return {
+      ...player,
+      ...emissions[player.id],
+      tripCount: playerTrips.length,
+      lastUpdated,
+    };
+  });
 }
 
 // Get emissions per team
@@ -165,6 +173,10 @@ export function getTeamEmissions() {
     const total = tournament + practice;
     const tripCount = teamPlayers.reduce((sum, p) => sum + p.tripCount, 0);
     const avgPerPlayer = teamPlayers.length > 0 ? total / teamPlayers.length : 0;
+    const lastUpdated = teamPlayers.reduce(
+      (latest, p) => (p.lastUpdated > latest ? p.lastUpdated : latest),
+      "",
+    );
 
     return {
       ...team,
@@ -174,6 +186,7 @@ export function getTeamEmissions() {
       tripCount,
       playerCount: teamPlayers.length,
       avgPerPlayer,
+      lastUpdated,
     };
   });
 }

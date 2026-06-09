@@ -6,12 +6,13 @@ import { getSummaryStats } from "@/lib/emissions-data";
 const icons = {
   leaf: (
     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 21c0-5 2-11 9-13 5-1.5 9-1 9-1s.5 4-1 9c-2 7-8 9-13 9a8 8 0 01-4-1z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 21c3-6 7-9 12-11" />
     </svg>
   ),
-  trophy: (
+  users: (
     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
     </svg>
   ),
   car: (
@@ -87,7 +88,7 @@ export function SummaryStats() {
           <CardTitle className="text-sm font-medium text-muted-foreground">
             Teams Tracked
           </CardTitle>
-          <span className="text-primary">{icons.trophy}</span>
+          <span className="text-primary">{icons.users}</span>
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-foreground">

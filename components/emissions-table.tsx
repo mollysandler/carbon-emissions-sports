@@ -20,6 +20,15 @@ export function EmissionsTable() {
 
   const sortedTeams = [...teamData].sort((a, b) => b.total - a.total);
 
+  const formatDate = (date: string) =>
+    date
+      ? new Date(date).toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+      : "—";
+
   const toggleTeam = (teamId: string) => {
     setExpandedTeam(expandedTeam === teamId ? null : teamId);
   };
@@ -43,6 +52,7 @@ export function EmissionsTable() {
               <TableHead className="text-right text-muted-foreground">Practice CO₂</TableHead>
               <TableHead className="text-right text-muted-foreground">Total CO₂</TableHead>
               <TableHead className="text-right text-muted-foreground">Avg per Player</TableHead>
+              <TableHead className="text-right text-muted-foreground">Last Updated</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -94,6 +104,9 @@ export function EmissionsTable() {
                     <TableCell className="text-right text-foreground">
                       {team.avgPerPlayer.toFixed(2)} kg
                     </TableCell>
+                    <TableCell className="text-right text-muted-foreground text-sm">
+                      {formatDate(team.lastUpdated)}
+                    </TableCell>
                   </TableRow>
 
                   {/* Expanded player rows */}
@@ -133,6 +146,9 @@ export function EmissionsTable() {
                           {player.total.toFixed(2)} kg
                         </TableCell>
                         <TableCell></TableCell>
+                        <TableCell className="text-right text-muted-foreground text-sm">
+                          {formatDate(player.lastUpdated)}
+                        </TableCell>
                       </TableRow>
                     ))}
                 </>
